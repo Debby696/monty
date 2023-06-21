@@ -39,8 +39,13 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-
-
-
-
+char *_strtok(char *str, char *delim);
+int _strcmp(char *s1, char *s2);
+char *_strcpy(char *dest, char *src);
+int check_digit(char *str);
+char *itoa(int val);
+void pall(stack_t *head);
+void push(stack_t **head, int n);
+stack_t *create_node(int n);
+int _strlen(char *str);
 #endif
