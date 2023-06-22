@@ -101,7 +101,7 @@ int main(int ac, char **argv)
 	int handle_open, x = 0;
 	char output_buff[4096] = {'\0'}, *cmds[4096];
 
-	if (ac <= 1)
+	if (ac != 2)
 		handle_error(1, argv, 0, NULL);
 
 	handle_open = open(argv[1], O_RDONLY);
