@@ -57,6 +57,11 @@ void run_commands(char **av, stack_t *head, char **argv)
 	while (av[x] != NULL)
 	{
 		cur = _strtok(av[x], " ");
+		if (cur == NULL)
+		{
+			x++;
+			continue;
+		}
 		if (_strcmp(cur, "push") == 0)
 		{
 			second_arg = _strtok(NULL, " ");
