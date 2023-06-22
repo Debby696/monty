@@ -15,33 +15,33 @@ void handle_error(int option, char **argv, int ln_number, char *opcode)
 	switch (option)
 	{
 		case 1:
-			_strcpy(&err[0], "USAGE: monty file\n");
+			strcat(&err[0], "USAGE: monty file\n");
 			break;
 		case 2:
-			_strcpy(&err[0], "Error: can't open file ");
-			_strcpy(&err[_strlen(err)], argv[1]);
-			_strcpy(&err[_strlen(err)], "\n");
+			strcat(&err[0], "Error: can't open file ");
+			strcat(&err[strlen(err)], argv[1]);
+			strcat(&err[strlen(err)], "\n");
 			break;
 		case 3:
-			_strcpy(&err[0], "L");
-			_strcpy(&err[_strlen(err)], itoa(ln_number + 1, &num[0]));
-			_strcpy(&err[_strlen(err)], ": usage: push integer\n");
+			strcat(&err[0], "L");
+			strcat(&err[strlen(err)], itoa(ln_number, &num[0]));
+			strcat(&err[strlen(err)], ": usage: push integer\n");
 			break;
 		case 4:
-			_strcpy(&err[0], "L");
-			_strcpy(&err[_strlen(err)], itoa(ln_number + 1, &num[0]));
-			_strcpy(&err[_strlen(err)], ": unknown intruction ");
-			_strcpy(&err[_strlen(err)], opcode);
-			_strcpy(&err[_strlen(err)], "\n");
+			strcat(&err[0], "L");
+			strcat(&err[strlen(err)], itoa(ln_number, &num[0]));
+			strcat(&err[strlen(err)], ": unknown intruction ");
+			strcat(&err[strlen(err)], opcode);
+			strcat(&err[strlen(err)], "\n");
 			break;
 		case 5:
-			_strcpy(&err[0], "L");
-			_strcpy(&err[_strlen(err)], itoa(ln_number + 1, &num[0]));
-			_strcpy(&err[_strlen(err)], ": can't pint, stack empty\n");
+			strcat(&err[0], "L");
+			strcat(&err[strlen(err)], itoa(ln_number, &num[0]));
+			strcpy(&err[strlen(err)], ": can't pint, stack empty\n");
 		default:
 			return;
 	}
 
-	write(STDERR_FILENO, err, _strlen(err));
+	write(STDERR_FILENO, err, strlen(err));
 	exit(EXIT_FAILURE);
 }

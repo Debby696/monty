@@ -8,6 +8,7 @@
 #include <string.h>
 #include <ctype.h>
 
+extern char open_file[4096];
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -40,14 +41,12 @@ typedef struct instruction_s
 
 char *_strtok(char *str, char *delim);
 int _strcmp(char *s1, char *s2);
-char *_strcpy(char *dest, char *src);
 int check_digit(char *str);
 char *itoa(int val, char *str);
-void pall(stack_t *head);
-void push(stack_t **head, int n);
+void push(stack_t **head, unsigned int line_number);
+void pall(stack_t **head, unsigned int line_number);
+void pint(stack_t **head, unsigned int line_number);
 stack_t *create_node(int n);
-int _strlen(char *str);
 void handle_error(int option, char **argv, int ln_number, char *opcode);
 void free_stack(stack_t *head);
-void pint(stack_t *head, int ln_number);
 #endif
