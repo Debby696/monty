@@ -38,16 +38,11 @@ void run_opcodes(char **cmds)
 	char *tmp = NULL;
 	int x = 0, i = 0;
 	instruction_t ops[] = {
-		{"push", push},
-		{"pall", pall},
-		{"pint", pint},
-		{"pop", pop},
-		{"swap", swap},
-		{"add", add},
-		{NULL, NULL}
+		{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop},
+		{"swap", swap}, {"add", add}, {"sub", sub}, {"mul", mul},
+		{"div", op_div}, {"mod", mod}, {NULL, NULL}
 	};
 
-	x = 0;
 	while (cmds[x] != NULL)
 	{
 		tmp = strtok(cmds[x], " ");
@@ -69,7 +64,6 @@ void run_opcodes(char **cmds)
 		i = 0;
 	}
 	free_stack(head);
-	exit(EXIT_SUCCESS);
 }
 /**
  * main - entry point
