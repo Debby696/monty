@@ -60,6 +60,8 @@ void run_commands(char **av, stack_t *head, char **argv)
 		if (_strcmp(cur, "push") == 0)
 		{
 			second_arg = _strtok(NULL, " ");
+			if (second_arg == NULL)
+				handle_error(3, argv, x, NULL);
 			if (check_digit(second_arg) == 0)
 				push(&head, atoi(second_arg));
 			else if (atoi(second_arg) != 0)
