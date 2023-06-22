@@ -48,6 +48,7 @@ void pall(stack_t **head, unsigned int line_number);
 void pint(stack_t **head, unsigned int line_number);
 void pop(stack_t **head, unsigned int line_number);
 void swap(stack_t **head, unsigned int line_number);
+void add(stack_t **head, unsigned int line_number);
 stack_t *create_node(int n);
 void handle_error(int option, char **argv, int ln_number, char *opcode);
 void free_stack(stack_t *head);
