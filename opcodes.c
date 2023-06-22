@@ -1,31 +1,6 @@
 #include "monty.h"
 
 /**
- * get_cmd - function that gets commands from the object file.
- * @line_number: line position of command
- * Return: pointer to the returned command.
- */
-char *get_cmd(unsigned int line_number)
-{
-	size_t x = 0;
-	char cpy[4096] = {'\0'}, *ptr = &cpy[0];
-
-	strcpy(&cpy[0], &open_file[0]);
-
-	if (line_number == 1)
-		return (_strtok(ptr, "\n"));
-
-	ptr = strtok(&cpy[0], "\n");
-	x++;
-	while (x < line_number)
-	{
-		ptr = strtok(NULL, "\n");
-		x++;
-	}
-
-	return (ptr);
-}
-/**
 * pall - prints all the values on the stack starting from the top.
 * @head: Address of first node of the stack.
 * @line_number: line where command is found.
@@ -116,11 +91,37 @@ void pop(stack_t **head, unsigned int line_number)
 	{
 		strcat(&err[0], "L");
 		strcat(&err[strlen(err)], itoa(line_number, &num[0]));
-		strcat(&err[strlen(err)], ": can't pint, stack empty\n");
+		strcat(&err[strlen(err)], ": can't pop, stack empty\n");
 		write(STDERR_FILENO, err, strlen(err));
 		exit(EXIT_FAILURE);
 	}
 	cur = cur->next;
 	free(*head);
 	*head = cur;
+}
+
+/**
+* swap - function that removes to element of the stack.
+* @head: first node of the stack.
+* @line_number: line where command is found.
+* Return: void.
+*/
+void swap(stack_t **head, unsigned int line_number)
+{
+	char err[4096] = {'\0'}, num[4096] = {'\0'};
+	stack_t *cur = *head, *tmp = cur->next;
+
+	if (cur == NULL || cur->next == NULL)
+	{
+		strcat(&err[0], "L");
+		strcat(&err[strlen(err)], itoa(line_number, &num[0]));
+		strcat(&err[strlen(err)], ": can't swap, stack too short\n");
+		write(STDERR_FILENO, err, strlen(err));
+		exit(EXIT_FAILURE);
+	}
+	*head = tmp;
+	cur->next = tmp->next;
+	tmp->next = cur;
+	cur->prev = tmp;
+	tmp->prev = NULL;
 }
