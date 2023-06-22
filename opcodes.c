@@ -100,3 +100,27 @@ void pint(stack_t **head, unsigned int line_number)
 	write(STDOUT_FILENO, str, strlen(str));
 	write(STDOUT_FILENO, "\n", 1);
 }
+
+/**
+* pop - function that removes to element of the stack.
+* @head: first node of the stack.
+* @line_number: line where command is found.
+* Return: void.
+*/
+void pop(stack_t **head, unsigned int line_number)
+{
+	char err[4096] = {'\0'}, num[4096] = {'\0'};
+	stack_t *cur = *head;
+
+	if (*head == NULL)
+	{
+		strcat(&err[0], "L");
+		strcat(&err[strlen(err)], itoa(line_number, &num[0]));
+		strcat(&err[strlen(err)], ": can't pint, stack empty\n");
+		write(STDERR_FILENO, err, strlen(err));
+		exit(EXIT_FAILURE);
+	}
+	cur = cur->next;
+	free(*head);
+	*head = cur;
+}

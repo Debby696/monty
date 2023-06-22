@@ -41,6 +41,7 @@ void run_opcodes(char **cmds)
 		{"push", push},
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}
 	};
 
