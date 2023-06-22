@@ -62,14 +62,25 @@ void run_commands(char **av, stack_t *head, char **argv)
 			second_arg = _strtok(NULL, " ");
 			if (check_digit(second_arg) == 0)
 				push(&head, atoi(second_arg));
+			else if (atoi(second_arg) != 0)
+				push(&head, atoi(second_arg));
 			else
-				handle_error(3, argv, x);
+			{
+				free_stack(head);
+				handle_error(3, argv, x, NULL);
+			}
 		}
 		else if (_strcmp(cur, "pall") == 0)
 			pall(head);
+		else
+		{
+			free_stack(head);
+			handle_error(4, argv, x, cur);
+		}
 		x++;
 	}
 	free_stack(head);
+	exit(EXIT_SUCCESS);
 }
 /**
  * main - entry point
@@ -84,11 +95,11 @@ int main(int ac, char **argv)
 	char output_buff[4096] = {'\0'}, *cmds[4096];
 
 	if (ac <= 1)
-		handle_error(1, argv, 0);
+		handle_error(1, argv, 0, NULL);
 
 	handle_open = open(argv[1], O_RDONLY);
 	if (handle_open == -1)
-		handle_error(2, argv, 0);
+		handle_error(2, argv, 0, NULL);
 
 	read(handle_open, output_buff, 4096);
 
