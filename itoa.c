@@ -2,12 +2,12 @@
 /**
  * itoa - function that converts an integer to a string.
  * @val: int that's to be converted
+ * @str: buff that will the string value
  * Return: Pointer to the new string
  */
-char *itoa(int val)
+char *itoa(int val, char *str)
 {
-	char src[4096] = {'0'}, *str = &src[0];
-	int temp;
+	int temp = val;
 
 	if (val == 0)
 	{
@@ -17,7 +17,7 @@ char *itoa(int val)
 	if (val < 0)
 	{
 		val *= -1;
-		*str++ = -1;
+		*str++ = -1 + '0';
 	}
 	for (temp = val; temp > 0; temp /= 10)
 	{

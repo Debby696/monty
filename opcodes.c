@@ -7,11 +7,14 @@
 */
 void pall(stack_t *head)
 {
-	if (head != NULL)
+	char str[4096] = {'\0'};
+
+	while (head != NULL)
 	{
-		pall(head->next);
-		write(STDOUT_FILENO, itoa(head->n), _strlen(itoa(head->n)));
+		itoa(head->n, &str[0]);
+		write(STDOUT_FILENO, str, _strlen(str));
 		write(STDOUT_FILENO, "\n", 1);
+		head = head->next;
 	}
 }
 /**
@@ -30,15 +33,8 @@ void push(stack_t **head, int n)
 		*head = create_node(n);
 		return;
 	}
-	while (cur != NULL)
-	{
-		if (cur->next == NULL)
-		{
-			new_node = create_node(n);
-			cur->next = new_node;
-			new_node->prev = cur;
-			break;
-		}
-		cur = cur->next;
-	}
+	new_node = create_node(n);
+	cur->prev = new_node;
+	new_node->next = cur;
+	*head = new_node;
 }
