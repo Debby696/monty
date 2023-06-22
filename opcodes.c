@@ -38,3 +38,21 @@ void push(stack_t **head, int n)
 	new_node->next = cur;
 	*head = new_node;
 }
+
+/**
+* pint - function that prints the val at the top of the stack.
+* @head: first node of the stack.
+* @ln_number: line contiaing command in file
+* Return: void.
+*/
+void pint(stack_t *head, int ln_number)
+{
+	char str[4096] = {'\0'};
+
+	if (head == NULL)
+		handle_error(5, NULL, ln_number, NULL);
+
+	itoa(head->n, &str[0]);
+	write(STDOUT_FILENO, str, _strlen(str));
+	write(STDOUT_FILENO, "\n", 1);
+}

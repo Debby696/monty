@@ -34,6 +34,10 @@ void handle_error(int option, char **argv, int ln_number, char *opcode)
 			_strcpy(&err[_strlen(err)], opcode);
 			_strcpy(&err[_strlen(err)], "\n");
 			break;
+		case 5:
+			_strcpy(&err[0], "L");
+			_strcpy(&err[_strlen(err)], itoa(ln_number + 1, &num[0]));
+			_strcpy(&err[_strlen(err)], ": can't pint, stack empty\n");
 		default:
 			return;
 	}

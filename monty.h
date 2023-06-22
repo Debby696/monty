@@ -8,7 +8,6 @@
 #include <string.h>
 #include <ctype.h>
 
-
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -50,4 +49,5 @@ stack_t *create_node(int n);
 int _strlen(char *str);
 void handle_error(int option, char **argv, int ln_number, char *opcode);
 void free_stack(stack_t *head);
+void pint(stack_t *head, int ln_number);
 #endif
