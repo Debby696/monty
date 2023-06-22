@@ -76,20 +76,23 @@ void run_opcodes(char **cmds)
 */
 int main(int ac, char **argv)
 {
-	int handle_open, x = 0;
+	int handle_open = 0, x = 0;
 	char output_buff[4096] = {'\0'}, *cmds[4096];
 
 	if (ac != 2)
 		handle_error(1, argv, 0, NULL);
 
-	handle_open = open(argv[1], O_RDWR);
+	handle_open = open(argv[1], O_RDONLY);
 
 	if (handle_open == -1)
 		handle_error(2, argv, 0, NULL);
 
-	read(handle_open, output_buff, 4096);
+	read(handle_open, &output_buff[0], 4096);
+
 	strcat(&open_file[0], &output_buff[0]);
+
 	cmds[x] = strtok(output_buff, "\n");
+
 	while (cmds[x] != NULL)
 	{
 		x++;

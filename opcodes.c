@@ -1,6 +1,10 @@
 #include "monty.h"
 
-
+/**
+ * get_cmd - function that gets commands from the object file.
+ * @line_number: line position of command
+ * Return: pointer to the returned command.
+ */
 char *get_cmd(unsigned int line_number)
 {
 	size_t x = 0;
@@ -18,7 +22,7 @@ char *get_cmd(unsigned int line_number)
 		ptr = strtok(NULL, "\n");
 		x++;
 	}
-	
+
 	return (ptr);
 }
 /**
@@ -44,14 +48,12 @@ void pall(stack_t **head, unsigned int line_number)
 /**
 * push - function that adds a new node to the top of the stack.
 * @head: Pointer to address of first node.
-* @n: Data that the added node will carry.
 * @line_number: line where command is found.
 * Return: void
 */
 void push(stack_t **head, unsigned int line_number)
 {
-	stack_t *new_node = NULL;
-	stack_t *cur = *head;
+	stack_t *new_node = NULL, *cur = *head;
 	char *second_arg = NULL;
 
 	_strtok(get_cmd(line_number), " ");
