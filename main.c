@@ -79,6 +79,8 @@ void run_commands(char **av, stack_t *head, char **argv)
 		}
 		else if (_strcmp(cur, "pall") == 0)
 			pall(head);
+		else if (_strcmp(cur, "pint") == 0)
+			pint(head, x);
 		else
 		{
 			free_stack(head);
