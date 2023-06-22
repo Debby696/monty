@@ -9,11 +9,11 @@ int _strlen(char *str)
 {
 	int x = 0;
 
-	if (str == NULL)
-		return (0);
-
-	while (str[x] != '\0')
+	while (*str)
+	{
 		x++;
+		str++;
+	}
 
 	return (x);
 }
@@ -32,37 +32,15 @@ stack_t *create_node(int n)
 	return (node);
 }
 /**
-* handle_error - function that prints error messages.
-* @option: integer indicating which error occurred.
-* @argv: list of cmd line arguments.
-* @ln_number: line number that error occurred on
-* Return: void
-*/
-void handle_error(int option, char **argv, int ln_number)
+ * free_stack - function that frees memory in a linked list.
+ * @head: first node of linked list.
+ * Return: void
+ */
+void free_stack(stack_t *head)
 {
-	char err[4096] = {'\0'};
-
-	switch (option)
-	{
-		case 1:
-			_strcpy(&err[0], "USAGE: monty file\n");
-			break;
-		case 2:
-			_strcpy(&err[0], "Error: can't open file ");
-			_strcpy(&err[_strlen(err)], argv[1]);
-			_strcpy(&err[_strlen(err)], "\n");
-			break;
-		case 3:
-			_strcpy(&err[0], "L");
-			_strcpy(&err[_strlen(err)], itoa(ln_number + 1));
-			_strcpy(&err[_strlen(err)], ": usage: push integer\n");
-			break;
-		default:
-			return;
-	}
-
-	write(STDERR_FILENO, err, _strlen(err));
-	exit(EXIT_FAILURE);
+	if (head != NULL)
+		free_stack(head->next);
+	free(head);
 }
 /**
 * run_commands - function that runs monty commands.
@@ -91,6 +69,7 @@ void run_commands(char **av, stack_t *head, char **argv)
 			pall(head);
 		x++;
 	}
+	free_stack(head);
 }
 /**
  * main - entry point
