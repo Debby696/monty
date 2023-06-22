@@ -51,7 +51,7 @@ void run_opcodes(char **cmds)
 	while (cmds[x] != NULL)
 	{
 		tmp = strtok(cmds[x], " ");
-		if (tmp == NULL || strcmp(tmp, "nop") == 0)
+		if (tmp == NULL || strcmp(tmp, "nop") == 0 || tmp[0] == '#')
 		{
 			x++;
 			continue;
