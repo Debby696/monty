@@ -7,7 +7,7 @@
  */
 char *itoa(int val, char *str)
 {
-	int temp = val;
+	int temp = 0;
 
 	if (val == 0)
 	{
@@ -17,13 +17,12 @@ char *itoa(int val, char *str)
 	if (val < 0)
 	{
 		val *= -1;
-		*str++ = -1 + '0';
+		*str++ = '-';
 	}
 	for (temp = val; temp > 0; temp /= 10)
-	{
-		*str = '\0';
-		str++;
-	}
+		*str++ = '\0';
+	*str++ = '\0';
+	str--;
 	for (temp = val; temp > 0; temp /= 10)
 		*--str = temp % 10 + '0';
 	return (str);
